@@ -22,12 +22,13 @@ class Vectors {
 			return data.size();
 		}	
 		
-		Vectors concat(const Vectors& left_object, const Vectors& right_object){
-			Vectors result_object(left_object.data.size() + right_object.data.size());
-			for(size_t i = 0; i < result_object.data.size(); i++){
-				(i < left_object.data.size()) ? result_object.data[i] = left_object.data[i] : right_object.data[i];
+		void concat(const Vectors& left_object, const Vectors& right_object){
+			for(size_t i = 0; i < left_object.data.size(); i++){
+				data[i] = left_object.data[i];
 			}
-		return result_object;
+			for(size_t i = left_object.data.size(); i < data.size(); i++){
+				data[i] = right_object.data[i];
+			}
 		}		
 		
 		friend std::istream& operator >>(std::istream& in, Vectors& right_object){
